@@ -24,7 +24,7 @@ export const Calls: React.FC<Props> = ({ channelName, peerIds, endCall }) => {
   return (
     <View style={styles.STCalls}>
       <ScrollView>
-        <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap' }}>
+        <View style={styles.STVideosContainer}>
           <RtcLocalView.SurfaceView
             style={styles.STCallVideo}
             channelId={channelName}
@@ -59,6 +59,11 @@ export const Calls: React.FC<Props> = ({ channelName, peerIds, endCall }) => {
 };
 
 const styles = StyleSheet.create({
+  STVideosContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
   STCalls: {
     flex: 1,
     alignContent: 'center',

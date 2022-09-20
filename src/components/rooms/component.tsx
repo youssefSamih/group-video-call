@@ -37,6 +37,7 @@ export const Rooms: React.FC<Props> = ({
               style={styles.STRoomsBtn}>
               <Text>
                 <Text style={styles.STRoomHead}>{name}</Text>
+
                 <Text style={styles.STusersCountText}>
                   {' (' + rooms[name] + ' users)'}
                 </Text>

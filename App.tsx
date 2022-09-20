@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import RtcEngine from 'react-native-agora';
 import RtmEngine from 'agora-react-native-rtm';
 import { REACT_APP_APP_ID } from '@env';
@@ -34,13 +34,15 @@ const App = () => {
   async function joinCall(channelId: string) {
     setChannelName(channelId);
 
-    await rtcEngine.current?.joinChannel(undefined, channelId, null, 0);
-
-    await rtmEngine.current?.joinChannel(channelId).catch(e => console.log(e));
-
     const members = await rtmEngine.current
       ?.getMembers(channelId)
       .catch(e => console.log(e));
+
+    if (members && members?.length >= 4) return Alert.alert('The channel ');
+
+    await rtcEngine.current?.joinChannel(undefined, channelId, null, 0);
+
+    await rtmEngine.current?.joinChannel(channelId).catch(e => console.log(e));
 
     if (members?.length === 1) {
       await rtmEngine.current
